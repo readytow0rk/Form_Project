@@ -3,7 +3,6 @@
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
   <head>
-    <script src="{% static 'assets/js/color-modes.js' %}"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -145,7 +144,10 @@
 <div class="container">
   <main>
     <div class="py-5 text-center">
-      <img class="d-block mx-auto mb-4" src="windLogo.png" alt="Windcave logo">
+
+        <img src="{% static 'images/windLogo.png' %}">
+
+      <!-- <img class="d-block mx-auto mb-4" src="windLogo.png" alt="Windcave logo"> -->
       <h2>Payment Checkout</h2>
       </div>
         <form class="needs-validation" id="paymentForm" novalidate action="https://formspree.io/f/xknllbyk" method="POST">
