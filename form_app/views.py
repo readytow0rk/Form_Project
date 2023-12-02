@@ -12,3 +12,10 @@ def submit_form(request):
         form = FormSubmissionForm()
 
     return render(request, 'form_app/index.html', {'form': form})
+
+
+def privacy_policy(request):
+    return render(request, 'form_app/privacyPolicy.html')  
+
+def home(request):
+    return render(request, 'form_app/index.html')  
