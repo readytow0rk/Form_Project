@@ -74,7 +74,7 @@ WSGI_APPLICATION = 'form_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# form_project/settings.py
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
