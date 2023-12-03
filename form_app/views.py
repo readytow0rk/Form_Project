@@ -25,3 +25,6 @@ def submit_payment(request):
 def success_page(request):
     return render(request, 'success.html')
 
+def checkout(request):
+    return render(request, 'form_app/checkout.html')
+
