@@ -1,6 +1,7 @@
 # form_app/views.py
 from django.shortcuts import render, redirect
 from .forms import PaymentForm
+from django.http import JsonResponse
 
 def privacy_policy(request):
     return render(request, 'form_app/privacyPolicy.html')  
@@ -13,11 +14,13 @@ def submit_payment(request):
         form = PaymentForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('success_page')  
+            return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'success': False, 'errors': form.errors})
     else:
         form = PaymentForm()
 
-    return render(request, 'success.html', {'form': form})
+    return render(request, 'form_app/payment_form.html', {'form': form})
 
 def success_page(request):
     return render(request, 'success.html')
