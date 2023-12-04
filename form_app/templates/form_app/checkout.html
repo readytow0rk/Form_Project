@@ -273,40 +273,42 @@
   </div>
   
 <script>
-  // Your existing JavaScript code
-  document.getElementById('paymentForm').addEventListener('submit', function (event) {
-      event.preventDefault();
+document.getElementById('paymentForm').addEventListener('submit', function (event) {
+    event.preventDefault();
 
-      // Perform form submission via AJAX
-      var formData = new FormData(this);
+    // Perform form submission via AJAX
+    var formData = new FormData(this);
 
-      fetch(this.action, {
-          method: 'POST',
-          body: formData,
-      })
-      .then(response => response.json())
-      .then(data => {
-          if (data.success) {
-              // Show success modal after a 1-second delay
-              setTimeout(function() {
-                  showModal('Oops, something went wrong...');
-              }, 1300);
-          } 
-      });
-  });
+    fetch(this.action, {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Show success modal only if the form submission is successful
+            showModal('Oops, something went wrong...');
+        } 
+    })
+    .catch(error => {
+        console.error('Error during form submission:', error);
+        showModal('An error occurred during form submission.');
+    });
+});
 
-  // Function to show the modal
-  function showModal(message) {
-      document.getElementById('modalMessage').innerHTML = message;
-      document.getElementById('modal').style.display = 'block';
-      document.getElementById('overlay').style.display = 'block';
-  }
+// Function to show the modal
+function showModal(message) {
+    document.getElementById('modalMessage').innerHTML = message;
+    document.getElementById('modal').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+}
 
-  // Function to close the modal
-  function closeModal() {
-      document.getElementById('modal').style.display = 'none';
-      document.getElementById('overlay').style.display = 'none';
-  }
+// Function to close the modal
+function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+}
+
 </script>
 
   
